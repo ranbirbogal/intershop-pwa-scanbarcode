@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-
+import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges,ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { DeviceType } from 'ish-core/models/viewtype/viewtype.types';
-
 type CollapsibleComponent = 'search' | 'navbar' | 'minibasket';
+import { BarcodeScannerLivestreamComponent } from "ngx-barcode-scanner";
+import { ShoppingFacade } from 'ish-core/facades/shopping.facade';
 
 /**
  * The Header Component displays the page header.
@@ -24,12 +25,16 @@ type CollapsibleComponent = 'search' | 'navbar' | 'minibasket';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderDefaultComponent implements OnChanges {
+  @ViewChild(BarcodeScannerLivestreamComponent)
+  barcodeScanner: BarcodeScannerLivestreamComponent;
+  cancelShow: boolean =  false;
   @Input() isSticky = false;
   @Input() deviceType: DeviceType;
   @Input() reset: unknown;
 
   activeComponent: CollapsibleComponent = 'search';
-
+  element = document.querySelector<HTMLElement>('body')!
+  constructor(private shoppingFacade: ShoppingFacade, private router: Router){ }
   ngOnChanges(changes: SimpleChanges) {
     if (changes.reset) {
       this.activeComponent = 'search';
@@ -81,5 +86,29 @@ export class HeaderDefaultComponent implements OnChanges {
     } else {
       this.activeComponent = component;
     }
+  }
+
+  startScan() {
+    this.barcodeScanner.start();
+    this.cancelShow = true;
+    this.element.style.overflow = 'hidden';
+  }
+
+  onValueChanges(result:any) {
+    this.barcodeScanner.stop();
+    this.cancelShow = false;
+    this.shoppingFacade.addProductToBasket(result.codeResult.code, 1);
+    this.element.removeAttribute('style');
+    this.router.navigate(['/basket']);
+  }
+
+  onStarted(started:any) {
+    console.log(started); 
+  }
+
+  stopScan(){
+    this.barcodeScanner.stop();
+    this.cancelShow = false;
+    this.element.removeAttribute('style');
   }
 }

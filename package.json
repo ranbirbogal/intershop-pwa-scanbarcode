@@ -64,9 +64,11 @@
     "@angular/platform-server": "13.0.2",
     "@angular/router": "13.0.2",
     "@angular/service-worker": "13.0.2",
+    "@ericblade/quagga2": "^1.6.0",
     "@fortawesome/angular-fontawesome": "^0.10.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
+    "@googlemaps/js-api-loader": "^1.13.4",
     "@ng-bootstrap/ng-bootstrap": "^11.0.0",
     "@ngrx/effects": "13.0.2",
     "@ngrx/entity": "13.0.2",
@@ -79,7 +81,6 @@
     "@ngx-translate/http-loader": "^7.0.0",
     "@rx-angular/state": "1.4.6",
     "@sentry/browser": "^6.17.4",
-    "@googlemaps/js-api-loader": "^1.13.4",
     "@trademe/ng-defer-load": "^8.2.1",
     "angular-oauth2-oidc": "13.0.1",
     "angular2-uuid": "^1.1.1",
@@ -88,9 +89,11 @@
     "express": "^4.17.2",
     "express-http-proxy": "^1.6.3",
     "express-robots-txt": "1.0.0",
+    "jsbarcode": "^3.11.5",
     "lodash-es": "^4.17.21",
     "morgan": "^1.10.0",
     "ng-recaptcha": "^9.0.0",
+    "ngx-barcode-scanner": "^0.3.0",
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-toastr": "^14.2.1",
     "rxjs": "~7.4.0",
@@ -191,7 +194,7 @@
     "*": [
       "prettier --loglevel warn --write"
     ],
-    "*.html" : [
+    "*.html": [
       "eslint --fix"
     ],
     "*.ts": [

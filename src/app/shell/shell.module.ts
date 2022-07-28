@@ -35,6 +35,8 @@ import { UserInformationMobileComponent } from './header/user-information-mobile
 import { LazyContentIncludeComponent } from './shared/lazy-content-include/lazy-content-include.component';
 import { LazyMiniBasketContentComponent } from './shared/lazy-mini-basket-content/lazy-mini-basket-content.component';
 import { LazySearchBoxComponent } from './shared/lazy-search-box/lazy-search-box.component';
+import { BarcodeScannerLivestreamModule } from "ngx-barcode-scanner";
+import { ProductContextFacade } from 'ish-core/facades/product-context.facade';
 
 const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderComponent];
 
@@ -56,6 +58,8 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     TrackingExportsModule,
     TranslateModule,
     WishlistsExportsModule,
+    BarcodeScannerLivestreamModule
+
   ],
   declarations: [
     ...exportedComponents,
@@ -76,6 +80,7 @@ const exportedComponents = [CookiesBannerComponent, FooterComponent, HeaderCompo
     UserInformationMobileComponent,
   ],
   exports: [...exportedComponents],
+  providers: [ProductContextFacade]
 })
 export class ShellModule {
   constructor(moduleLoader: ModuleLoaderService, injector: Injector) {

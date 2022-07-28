@@ -46,6 +46,7 @@ import {
   faUndo,
   faUser,
   faUserCheck,
+  faBarcode
 } from '@fortawesome/free-solid-svg-icons';
 
 @NgModule({
@@ -99,7 +100,8 @@ export class IconModule {
       faFastForward,
       faMapMarkerAlt,
       faEnvelope,
-      faFax
+      faFax,
+      faBarcode
     );
   }
 }

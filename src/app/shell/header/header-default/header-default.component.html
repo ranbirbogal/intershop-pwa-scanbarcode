@@ -70,6 +70,12 @@
           class="mobile-logo"
           data-testing-id="header-home-link-mobile"
         ></a>
+        <a *ngIf="deviceType === 'mobile'" class="scan-code" >
+          <fa-icon [icon]="['fas', 'barcode']" class="header-icon" (click)="startScan()"></fa-icon>
+        </a>
+        <a *ngIf="deviceType === 'mobile' && cancelShow" class="scan-code" >
+          <button type="button" (click)="stopScan()">x</button>
+        </a>
       </div>
     </div>
     <div class="col-md-5 text-right">
@@ -99,3 +105,9 @@
     </nav>
   </div>
 </div>
+
+  <barcode-scanner-livestream
+  type="code_128"
+  (valueChanges)="onValueChanges($event)"
+  (started)="(onStarted)"
+  ></barcode-scanner-livestream>
